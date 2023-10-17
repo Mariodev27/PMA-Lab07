@@ -43,6 +43,11 @@ class FirstViewController: UIViewController {
             present(alerta,animated: true, completion: nil)
             }
     
+    //funcion de ocultar teclado
+    @objc func ocultarTeclado(){
+        view.endEditing(true)
+    }
+    
     @IBAction func btnSumar(_ sender: Any) {
         if Double(txtNumero1.text!) != nil && Double(txtNumero2.text!) != nil {
             nro1 = Double(txtNumero1.text!)!
@@ -57,10 +62,56 @@ class FirstViewController: UIViewController {
         
     }
     
+    
+    @IBAction func btnRestar(_ sender: Any) {
+        if Double(txtNumero1.text!) != nil && Double(txtNumero2.text!) != nil {
+            nro1 = Double(txtNumero1.text!)!
+            nro2 = Double(txtNumero2.text!)!
+            rpta = nro1 - nro2
+            print(rpta)
+                txtRpta.text = String(rpta)
+        }else{
+            mostrarAlerta(titulo: "Error", mensaje: "Debe introducir solo valores numericos")
+            print("Error al realizar la operacion")
+        }
+    }
+    
+    
+    @IBAction func btnDividir(_ sender: Any) {
+        if Double(txtNumero1.text!) != nil && Double(txtNumero2.text!) != nil {
+            nro1 = Double(txtNumero1.text!)!
+            nro2 = Double(txtNumero2.text!)!
+            rpta = nro1 / nro2
+            print(rpta)
+                txtRpta.text = String(rpta)
+        }else{
+            mostrarAlerta(titulo: "Error", mensaje: "Debe introducir solo valores numericos")
+            print("Error al realizar la operacion")
+        }
+    }
+    
+    @IBAction func btnMultiplicar(_ sender: Any) {
+        if Double(txtNumero1.text!) != nil && Double(txtNumero2.text!) != nil {
+            nro1 = Double(txtNumero1.text!)!
+            nro2 = Double(txtNumero2.text!)!
+            rpta = nro1 * nro2
+            print(rpta)
+                txtRpta.text = String(rpta)
+        }else{
+            mostrarAlerta(titulo: "Error", mensaje: "Debe introducir solo valores numericos")
+            print("Error al realizar la operacion")
+        }
+    }
+    
+    @IBAction func btnLimpiar(_ sender: Any) {
+        Limpiar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:
+            #selector(ocultarTeclado))
+        view.addGestureRecognizer(tap)
     }
     
 
